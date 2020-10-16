@@ -29,6 +29,16 @@ export default function OrphanageData() {
   async function handleCreateOrphanage() {
     const { latitude, longitude } = params.position;
 
+    console.log({
+      name,
+      latitude,
+      longitude,
+      about,
+      instructions,
+      opening_hours,
+      open_on_weekends,
+    });
+
     const data = new FormData();
 
     data.append('name', name);
@@ -36,17 +46,16 @@ export default function OrphanageData() {
     data.append('latitude', String(latitude));
     data.append('longitude', String(longitude));
     data.append('instructions', instructions);
-    data.append('opening_gours', opening_hours);
+    data.append('opening_hours', opening_hours);
     data.append('open_on_weekends', String(open_on_weekends));
 
-    images.forEach( (image, index) => {
+    images.forEach((image, index) => {
       data.append('images', {
         name: `image_${index}.jpg`,
         type: 'image/jpg',
         uri: image,
-      } as any)
-    })
-
+      } as any);
+    });
 
     await api.post('orphanages', data);
 
