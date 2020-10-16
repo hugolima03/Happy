@@ -5,5 +5,3 @@ const api = axios.create({
 });
 
 export default api;
-
-// exp://ta-6f7.anonymous.mobile.exp.direct:80
